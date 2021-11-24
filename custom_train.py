@@ -382,6 +382,13 @@ def train(hyp,  # path/to/hyp.yaml or hyp dictionary
                         'wandb_id': loggers.wandb.wandb_run.id if loggers.wandb else None,
                         'date': datetime.now().isoformat()}
 
+                # Save model for SageMaker Neo compiling
+                dump_model = de_parallel(model)
+                dump_model.eval()
+                inp = torch.rand(1, 3, imgsz, imgsz).to(device)
+                model_trace = torch.jit.trace(dump_model, inp)
+                model_trace.save(os.path.join(w, 'model_epoch_{}.pth'.format(epoch)))
+
                 # Save last, best and delete
                 torch.save(ckpt, last)
                 if best_fitness == fi:
