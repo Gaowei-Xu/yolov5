@@ -13,7 +13,7 @@ val: val.txt
 test:  # test images (optional)
 
 # Classes
-nc: 14  # number of classes
+nc: 5  # number of classes
 names: ["pedestrian", "rider", "partially-visible person", "ignore region", "crowd"]  # class names
 
 
