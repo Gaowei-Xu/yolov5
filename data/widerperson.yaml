@@ -1,0 +1,24 @@
+# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+# Example usage: python train.py --data widerperson.yaml
+# parent
+# ├── yolov5
+# └── datasets
+#     └── widerperson  ← downloads here
+
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../datasets/widerperson  # dataset root dir
+train: train.txt
+val: val.txt
+test:  # test images (optional)
+
+# Classes
+nc: 14  # number of classes
+names: ["pedestrian", "rider", "partially-visible person", "ignore region", "crowd"]  # class names
+
+
+# Download script/URL (optional)
+download: https://neo-models-zoo.s3.amazonaws.com/datasets/widerperson.zip
+
+
+
