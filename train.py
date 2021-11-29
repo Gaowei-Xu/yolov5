@@ -382,15 +382,6 @@ def train(hyp,  # path/to/hyp.yaml or hyp dictionary
                         'wandb_id': loggers.wandb.wandb_run.id if loggers.wandb else None,
                         'date': datetime.now().isoformat()}
 
-                # Save model for SageMaker Neo optimization
-                dump_model = deepcopy(de_parallel(model))
-                dump_model.eval()
-                inp = torch.rand(1, 3, 640, 640).to(device)
-                model_trace = torch.jit.trace(dump_model, inp)
-                model_trace.save('persondet.pth')
-                print("Saved PyTorch Model State to persondet.pth")
-
-
                 # Save last, best and delete
                 torch.save(ckpt, last)
                 if best_fitness == fi:
